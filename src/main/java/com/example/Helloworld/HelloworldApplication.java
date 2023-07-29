@@ -2,7 +2,8 @@ package com.example.Helloworld;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
+import org.springframework.web.bind.annonation.RequestMapping;
+import org.springframework.web.bind.annonation.ResController;
 @SpringBootApplication
 @RestController
 public class HelloworldApplication {
