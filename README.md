@@ -1,15 +1,16 @@
-# COVID-Awareness-Website
-It is a Covid19 Awareness Website made with simple HTML, CSS, and bootstrap.
-It gives detail information about precautions, symptoms and the causes of Coronavirus guiding you about the various myth busters 
-and activities taking place related to corona.
-In short, it is the go-to website for anyone who wants information related to corona and its updates.
+# Github Profile Finder
 
-Created By:
+## Description
+GitHub Profile Finder will fetch the github details like, Name of the user, Number of Repositories, Bio of the user, Number of Followers, Number of Followings and profile pic just by entering the username and click on Search User.
 
-### Tejas Tapas -
-Github Id: Tejas1510
+By clicking on the username, it will redirect to user github profile.
 
-### Rishabh Rathi - 
-Website: [Rishabh Rathi](http://www.rishabhrathi.co/)\
-Github Id: [rishabhrathi22](https://github.com/rishabhrathi22)\
-LinkedIn: [rishabhrathi22](https://www.linkedin.com/in/rishabhrathi22/)
+## Stacks Used
+* JavaScript Promises
+* API  
+
+## API Used
+https://api.github.com/user/user_name
+
+## ScreenShot
+<img src="https://github.com/ayushseth07/Web-dev-mini-projects/blob/patch/GitHub%20Profile%20Finder/ss.png" />
