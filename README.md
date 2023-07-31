@@ -1,16 +1,35 @@
-# Github Profile Finder
+<h1>WeatherApp</h1>
 
-## Description
-GitHub Profile Finder will fetch the github details like, Name of the user, Number of Repositories, Bio of the user, Number of Followers, Number of Followings and profile pic just by entering the username and click on Search User.
+<p>Simple Weather app written in HTML, CSS, and JavaScript using the APIs for fetching weather and geolocation information.</p>
 
-By clicking on the username, it will redirect to user github profile.
+<h3>Used Technologies</h3>
+<ul>
+  <li>HTML5</li>
+  <li>CSS3</li>
+  <li>JavaScript</li>
+</ul>
 
-## Stacks Used
-* JavaScript Promises
-* API  
+<h3>Used APIs</h4>
+<ul>
+  <li>Open Weather API</li>
+ <li>Unsplash API</li>
+</ul>
+#### Steps to Use:
+---
 
-## API Used
-https://api.github.com/user/user_name
+- Download or clone the repository
+```
+git clone https://github.com/Ayushparikh-code/Web-dev-mini-projects.git
+```
+- Go to the directory
+- Run the index.html file
+- Just Type the city name you want to know the weather of, and then click on the search button.
+- After that it will automatically display Weather, Humidity, Wind Speed of the city.
 
-## ScreenShot
-<img src="https://github.com/ayushseth07/Web-dev-mini-projects/blob/patch/GitHub%20Profile%20Finder/ss.png" />
+
+<h3> ScreenShots </h3>  
+<img src = "Weather-App.jpg" alt="Sample Image">
+<br>
+<video controls autoplay>
+  <source src="sample.mp4" type="video/mp4">
+</video>
