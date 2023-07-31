@@ -1,11 +1,8 @@
-# Temperature Converter
-Converts temperature (in C, F or K) to other units.
+# Restaurant Landing Page
 
-### Live version: ###
-https://temperatureconverter.netlify.com
+- Used bootstrap tools & own styles.
+- Implemented responsive template.
 
-### Created using: ###
-- HTML
-- CSS
-- Bootstrap
-- JavaScript
+👉🏻 [Demo](https://yaninatrekhleb.github.io/restaurant-website/)
+
+![Demo](img/demo.gif)
