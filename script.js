@@ -1,54 +1,38 @@
-//  API USED => https://api.github.com/user/user_name
+async function fetchProfile() {
+    const username = document.getElementById('username').value.trim();
 
+    if (!username) {
+        alert('Please enter a GitHub username.');
+        return;
+    }
 
-let input_user = document.querySelector("#input");
+    try {
+        const response = await fetch(`https://api.github.com/users/${username}`);
+        const data = await response.json();
 
-const userImg = document.querySelector(".main-info");
-// const name = document.querySelector("#name");
-// const userName =document.querySelector("#username");
-const bio = document.querySelector("#bio")
-const repos = document.querySelector("#repo");
-const followers = document.querySelector("#followers");
-const following = document.querySelector("#following");
-
-const fetchUser = (user_name) => {
-	fetch(`https://api.github.com/users/${user_name}`)
-		.then((data) => data.json())
-		.then((jsonData) => {
-
-			if (jsonData.message == "Not found") {
-				alert("User Not Found");
-				return;
-				// console.log("Error" + jsonData.message);
-			} else {
-				userImg.innerHTML = `
-            <img src="${jsonData.avatar_url}" alt="avatar" id="prof-img">
-            <span class="name" id="name">${jsonData.name}</span>
-            <a href="${jsonData.html_url}" id="username">@${jsonData.login}</a>
-            `;
-				bio.innerHTML = jsonData.bio;
-				repos.innerHTML = jsonData.public_repos;
-				followers.innerHTML = jsonData.followers;
-				following.innerHTML = jsonData.following;
-			}
-
-		})
-		.catch((err) => {
-			console.log("Catch" + err.message);
-		});
+        if (response.status === 200) {
+            displayProfile(data);
+        } else if (response.status === 404) {
+            alert('User not found.');
+        } else {
+            alert(`Error: ${data.message}`);
+        }
+    } catch (error) {
+        alert('An error occurred. Please try again later.');
+    }
 }
 
-const getUser = () => {
-	let user_name = input_user.value.trim();
-	//  trim will replace before and after spaces
+function displayProfile(profileData) {
+    const profileContainer = document.getElementById('profile');
 
-	if (user_name.length == 0) {
-		alert("Please enter a valid github username");
-	} else {
-		fetchUser(user_name)
-	}
-
-	input_user.value = " ";
-
+    profileContainer.innerHTML = `
+        <h2>${profileData.login}</h2>
+        <img src="${profileData.avatar_url}" alt="${profileData.login}" width="150">
+        <p>Name: ${profileData.name || 'N/A'}</p>
+        <p>Location: ${profileData.location || 'N/A'}</p>
+        <p>Followers: ${profileData.followers}</p>
+        <p>Following: ${profileData.following}</p>
+        <p>Public Repositories: ${profileData.public_repos}</p>
+        <p>Profile URL: <a href="${profileData.html_url}" target="_blank">${profileData.html_url}</a></p>
+    `;
 }
-
