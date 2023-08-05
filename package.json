@@ -1,20 +1,29 @@
 {
-  "name": "easyio",
-  "version": "0.0.1",
-  "description": "A tiny node.js app to test your socket.io connectivity",
-  "main": "main.js",
-  "repository": {
-    "url": "git@github.com:Juriy/easyio.git",
-    "type": "git"
-  },
+  "name": "node-js-sample",
+  "version": "0.2.0",
+  "description": "A sample Node.js app using Express 4",
+  "main": "index.js",
   "scripts": {
-    "start": "node main.js"
+    "start": "node index.js"
   },
-  "author": "Juriy Bura <juriy.bura@gmail.com>",
-  "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1",
-    "minimist": "^1.2.5",
-    "socket.io": "^2.3.0"
-  }
+    "express": "^4.13.3"
+  },
+  "engines": {
+    "node": "4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/heroku/node-js-sample"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "author": "Mark Pundsack",
+  "contributors": [
+    "Zeke Sikelianos <zeke@sikelianos.com> (http://zeke.sikelianos.com)"
+  ],
+  "license": "MIT"
 }

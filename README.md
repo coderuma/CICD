@@ -1,51 +1,44 @@
-# EASYIO
-A simple application to test REST and SocketIO connectivity and experiment with node.js deployement models. This is an accompanying app 
-for YouTube series - **"Deploying Node"** https://www.youtube.com/playlist?list=PLQlWzK5tU-gDyxC1JTpyC2avvJlt3hrIh
+### This repository is no longer maintained!
 
-Check out the deployed version at https://nanogram.io
+**For the most up to date test app to get you started on Heroku, head on over to [`node-js-getting-started`](https://github.com/heroku/node-js-getting-started).**
 
+---
 
-# Building locally
+# node-js-sample
 
-```
+A barebones Node.js app using [Express 4](http://expressjs.com/).
+
+## Running Locally
+
+Make sure you have [Node.js](http://nodejs.org/) and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
+
+```sh
+git clone git@github.com:heroku/node-js-sample.git # or clone your own fork
+cd node-js-sample
 npm install
 npm start
 ```
 
-# Running application
-easyio accepts argments, each of which is optional. Below are the arguments with their default values:
+Your app should now be running on [localhost:5000](http://localhost:5000/).
 
-`node main.js --name default --port 8080`
-
-`name` - the name that this node will report in API (useful for load-balancing checks)
-
-`port` - port to listen to (host is hardcoded to 127.0.0.1)
-
-To run with PM2 (example with two instances on different ports to match with `conf/nginx/load-balancing.conf` configuration)
+## Deploying to Heroku
 
 ```
-pm2 start --name easy-1 main.js -- --name easy-1 --port 8080
-pm2 start --name easy-2 main.js -- --name easy-2 --port 8081
+heroku create
+git push heroku master
+heroku open
 ```
 
-# Project Structure
-The node.js app contains only one file - `main.js`. There are some static files to present a (reasonably awkward) 
-UI in `public` folder.
+Alternatively, you can deploy your own copy of the app using the web-based flow:
 
-NGINX configs are in `conf/nginx` folder
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-# API
-An application exposes REST and SocketIO APIs
+## Documentation
 
-## REST API
+For more information about using Node.js on Heroku, see these Dev Center articles:
 
-`GET /api/test ` - dumps request headers as well as remote IP as seen by node.js app (good to test if proxy passes the IP)
-
-`GET /api/name ` - responds with the node name (see command line parameters above)
-
-`GET /api/info ` - responds with app version, reading it from `version.txt` file or 0 if no file is present, value of `__dirname` and `process.cwd()`. Useful to see which version is being served and where is it served from
-
-## SocketIO API
-For every connected client, an application listens to `heartbeat` event. Once event is received, server will send back `heartbeat` event with the same payload as client sent, adding the name of the node that processed event. Useful to test socket.io connectivity as well as roundtrip times.
-
-
+- [10 Habits of a Happy Node Hacker](https://blog.heroku.com/archives/2014/3/11/node-habits)
+- [Getting Started with Node.js on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
+- [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support)
+- [Node.js on Heroku](https://devcenter.heroku.com/categories/nodejs)
+- [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
