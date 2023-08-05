@@ -1,73 +1,51 @@
-![logo](https://image.ibb.co/g69ZDx/682111_cloud_512x512.png)
+# EASYIO
+A simple application to test REST and SocketIO connectivity and experiment with node.js deployement models. This is an accompanying app 
+for YouTube series - **"Deploying Node"** https://www.youtube.com/playlist?list=PLQlWzK5tU-gDyxC1JTpyC2avvJlt3hrIh
 
-# 5-Day Weather Forecast
-A simple application to display 5-day weather forecast using the OpenWeatherMap API. Built on top of my recently created [React-Redux-Sass Starter Kit](https://github.com/Gigacore/React-Redux-Sass-Starter).
-
-### Demo
-https://www.gigacore.in/demos/react-weather-forecast/
-
-## Pre-requisites
-* Node.js 9.8.0 and above
-
-## Run
-```
-git clone
-cd react-weather-forecast
-npm i
-```
+Check out the deployed version at https://nanogram.io
 
 
-## Start the dev server
-```
-
-npm run start:dev
+# Building locally
 
 ```
-
-## Build
+npm install
+npm start
 ```
 
-npm run build
+# Running application
+easyio accepts argments, each of which is optional. Below are the arguments with their default values:
+
+`node main.js --name default --port 8080`
+
+`name` - the name that this node will report in API (useful for load-balancing checks)
+
+`port` - port to listen to (host is hardcoded to 127.0.0.1)
+
+To run with PM2 (example with two instances on different ports to match with `conf/nginx/load-balancing.conf` configuration)
 
 ```
-
-#### Notes:
-* Running the build bundles all your updates to ```bundle.js``` and ```bundle.css``` in dist folder.
-* If you insist to automate the build upon appending changes to files, use ```webpack --watch```
-
-## Test
+pm2 start --name easy-1 main.js -- --name easy-1 --port 8080
+pm2 start --name easy-2 main.js -- --name easy-2 --port 8081
 ```
 
-npm run test
+# Project Structure
+The node.js app contains only one file - `main.js`. There are some static files to present a (reasonably awkward) 
+UI in `public` folder.
 
-```
+NGINX configs are in `conf/nginx` folder
 
-#### Notes:
-* Unit testing can be done manually by executing the above command.
-* It will be done automatically prior committing the updates to the repo as a pre-commit hook.
+# API
+An application exposes REST and SocketIO APIs
 
-### TODOs
-- [x] Provide an option for user to choose location of their choice by Name, Lat/Long etc
-- [x] Unit testing
-- [x] Identify and address edgecases.
-- [x] Revisit the code to improve performance. Such as sorting, looping, searching etc.
-- [x] Use a proper loading spinner icon on page load
-- [x] Detect location automatically
-- [x] Display hourly forecasts.
-- [ ] Add an option to choose Units in either Metric or Imperial.
-- [ ] Display higher-level of weather information such as Wind Speed, Precipitation etc
-- [ ] Fix lint issues and config the eslintrc to support "no-vars-used" for Imports
-- [ ] Better and more functional UI
-- [ ] Prevent fetching new data on every refresh by caching the data for a set duration of session.
+## REST API
 
-### Tech Stack
+`GET /api/test ` - dumps request headers as well as remote IP as seen by node.js app (good to test if proxy passes the IP)
 
-* React.js
-* Redux
-* JavaScript (ES6)
-* HTML5
-* SASS
-* Jest + Enzyme
+`GET /api/name ` - responds with the node name (see command line parameters above)
 
-#### The MIT License (MIT)
-MIT © 2018 Santhosh Sundar
+`GET /api/info ` - responds with app version, reading it from `version.txt` file or 0 if no file is present, value of `__dirname` and `process.cwd()`. Useful to see which version is being served and where is it served from
+
+## SocketIO API
+For every connected client, an application listens to `heartbeat` event. Once event is received, server will send back `heartbeat` event with the same payload as client sent, adding the name of the node that processed event. Useful to test socket.io connectivity as well as roundtrip times.
+
+
