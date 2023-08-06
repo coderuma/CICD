@@ -9,6 +9,11 @@ app.get('/hello', (req, res) => {
   res.send(greeting);
 });
 
+app.get('/Bye', (req, res) => {
+  const greeting_2 = sayBye();
+  res.send(greeting_2);
+});
+
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
 });
